@@ -35,6 +35,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const isHeroRoute = location.pathname === '/';
   const navigate = useNavigate();
+  const [menuAnimating, setMenuAnimating] = useState(false);
 
   const containerVariants = {
     open: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
@@ -142,10 +143,12 @@ const Header: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.24, ease: 'easeOut' }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            onAnimationStart={() => setMenuAnimating(true)}
+            onAnimationComplete={() => setTimeout(() => setMenuAnimating(false), 10)}
             className={cn(
               'md:hidden fixed inset-0 top-0 z-40 overflow-hidden transform-gpu',
-              'bg-ds-charcoal/90 backdrop-blur-xl'
+              menuAnimating ? 'bg-ds-charcoal/85 backdrop-blur-md' : 'bg-ds-charcoal/90 backdrop-blur-xl'
             )}
             style={{ willChange: 'opacity', transform: 'translateZ(0)', contain: 'layout paint' }}
           >
