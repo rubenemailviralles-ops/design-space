@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import { preloadPage } from '@/utils/imagePrefetch';
+
+const MotionBurger: React.FC<{ open: boolean }> = ({ open }) => {
+  return (
+    <div className="relative w-7 h-7">
+      <motion.span
+        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        style={{ top: '7px' }}
+        animate={open ? { y: 4, rotate: 45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+      />
+      <motion.span
+        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        style={{ top: '13px' }}
+        animate={open ? { opacity: 0, scaleX: 0.6 } : { opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
+      />
+      <motion.span
+        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        style={{ top: '19px' }}
+        animate={open ? { y: -4, rotate: -45 } : { y: 0, rotate: 0 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+      />
+    </div>
+  );
+};
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,8 +90,10 @@ const Header: React.FC = () => {
         <button
           className="md:hidden text-ds-charcoal focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label="Toggle navigation"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          <MotionBurger open={isOpen} />
         </button>
       </div>
 
