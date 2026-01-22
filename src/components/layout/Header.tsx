@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import { preloadPage } from '@/utils/imagePrefetch';
@@ -34,6 +34,17 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHeroRoute = location.pathname === '/';
+  const navigate = useNavigate();
+
+  const containerVariants = {
+    open: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
+    closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+  };
+
+  const itemVariants = {
+    open: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    closed: { opacity: 0, y: -8, filter: 'blur(2px)' },
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,20 +125,34 @@ const Header: React.FC = () => {
               'bg-ds-charcoal/90 backdrop-blur-xl'
             )}
           >
-            <div className="flex flex-col items-center justify-center h-full space-y-8 pb-20">
+            <motion.ul
+              className="flex flex-col items-center justify-center h-full space-y-8 pb-20"
+              initial="open"
+              animate="open"
+              exit="closed"
+              variants={containerVariants}
+            >
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
-                  onMouseEnter={() => preloadPage(link.path)}
-                  onFocus={() => preloadPage(link.path)}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                >
-                  {link.name}
-                </Link>
+                <motion.li key={link.path} variants={itemVariants}>
+                  <Link
+                    to={link.path}
+                    className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
+                    onMouseEnter={() => preloadPage(link.path)}
+                    onFocus={() => preloadPage(link.path)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        navigate(link.path);
+                      }, 300);
+                    }}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.li>
               ))}
-            </div>
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>
