@@ -24,6 +24,7 @@ const pageImages: Record<string, string[]> = {
     "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Professional%20portrait%20of%20female%20architect%2C%20confident%2C%20minimalist%20style%2C%20bright%20studio%2C%208k&image_size=square_hd",
   ],
   '/contact': [
+    "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Warm%20inviting%20modern%20living%20room%20corner%20with%20armchair%2C%20reading%20lamp%2C%20plant%2C%20sunlight%2C%20cozy%2C%20high%20quality%2C%208k&image_size=landscape_4_3",
   ],
 };
 
