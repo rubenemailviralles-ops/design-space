@@ -48,7 +48,7 @@ const LazyImage: React.FC<Props> = ({ src, alt, className, eager = false, fetchP
           src={src}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
-          fetchpriority={fetchPriority}
+          fetchPriority={fetchPriority}
           onLoad={() => setLoaded(true)}
           className={cn(
             'w-full h-full object-cover transition-opacity duration-500',

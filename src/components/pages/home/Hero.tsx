@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Preload the background image with high priority */}
-      <img src={imageSrc} alt="" loading="eager" fetchpriority="high" className="w-0 h-0 opacity-0 absolute" />
+      <img src={imageSrc} alt="" loading="eager" fetchPriority="high" className="w-0 h-0 opacity-0 absolute" />
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
