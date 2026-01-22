@@ -10,7 +10,7 @@ type Props = {
 const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
   const [visible, setVisible] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const ref = useRef<HTMLImageElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if ('IntersectionObserver' in window) {
@@ -25,7 +25,7 @@ const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
         },
         { rootMargin: '200px' }
       );
-      if (ref.current) observer.observe(ref.current);
+      if (containerRef.current) observer.observe(containerRef.current);
       return () => observer.disconnect();
     } else {
       setVisible(true);
@@ -33,13 +33,12 @@ const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
   }, []);
 
   return (
-    <div className={cn('relative', className)}>
-      {!loaded && (
+    <div ref={containerRef} className={cn('relative', className)}>
+      {!loaded ? (
         <div className="absolute inset-0 bg-ds-beige/30 animate-pulse" />
-      )}
-      {visible && (
+      ) : null}
+      {visible ? (
         <img
-          ref={ref}
           src={src}
           alt={alt}
           loading="lazy"
@@ -49,7 +48,7 @@ const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
             loaded ? 'opacity-100' : 'opacity-0'
           )}
         />
-      )}
+      ) : null}
     </div>
   );
 };
