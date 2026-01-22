@@ -97,7 +97,7 @@ const Header: React.FC = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between md:gap-12 lg:gap-16">
-        <Link to="/" className={cn('text-2xl md:text-3xl font-serif font-bold tracking-wide transition-colors', isOpen ? 'text-ds-white' : 'text-ds-charcoal')}>
+        <Link to="/" className={cn('relative z-50 text-2xl md:text-3xl font-serif font-bold tracking-wide transition-colors', isOpen ? 'text-ds-white' : 'text-ds-charcoal')}>
           Design Space
         </Link>
 
@@ -138,15 +138,15 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: '100vh' }}
-            exit={{ opacity: 0, y: -8, height: 0 }}
-            transition={{ duration: 0.28, ease: 'easeInOut' }}
+            initial={{ opacity: 0, y: 6, scaleY: 0.98 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -4, scaleY: 0.98 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
             className={cn(
               'md:hidden fixed inset-0 top-0 z-40 overflow-hidden transform-gpu',
               'bg-ds-charcoal/90 backdrop-blur-xl'
             )}
-            style={{ willChange: 'transform, opacity' }}
+            style={{ willChange: 'transform, opacity', transformOrigin: 'top' }}
           >
             <motion.ul
               className="flex flex-col items-center justify-center h-full space-y-8 pb-20"
