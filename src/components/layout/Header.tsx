@@ -4,23 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import { preloadPage } from '@/utils/imagePrefetch';
 
-const MotionBurger: React.FC<{ open: boolean }> = ({ open }) => {
+const MotionBurger: React.FC<{ open: boolean; barClass: string }> = ({ open, barClass }) => {
   return (
     <div className="relative w-7 h-7">
       <motion.span
-        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        className={cn("absolute left-0 right-0 h-[2px]", barClass)}
         style={{ top: '7px' }}
         animate={open ? { y: 4, rotate: 45 } : { y: 0, rotate: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       />
       <motion.span
-        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        className={cn("absolute left-0 right-0 h-[2px]", barClass)}
         style={{ top: '13px' }}
         animate={open ? { opacity: 0, scaleX: 0.6 } : { opacity: 1, scaleX: 1 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
       />
       <motion.span
-        className="absolute left-0 right-0 h-[2px] bg-ds-charcoal"
+        className={cn("absolute left-0 right-0 h-[2px]", barClass)}
         style={{ top: '19px' }}
         animate={open ? { y: -4, rotate: -45 } : { y: 0, rotate: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -89,12 +89,15 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-ds-charcoal focus:outline-none"
+          className="md:hidden text-ds-charcoal focus:outline-none relative z-50"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
-          <MotionBurger open={isOpen} />
+          <MotionBurger 
+            open={isOpen} 
+            barClass={cn(isHeroRoute && !scrolled ? 'bg-ds-white' : 'bg-ds-charcoal')}
+          />
         </button>
       </div>
 
