@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/common/Button';
 
 const Hero: React.FC = () => {
   const imageSrc = "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Luxurious%20modern%20living%20room%20with%20beige%20and%20white%20tones%2C%20spacious%2C%20high%20ceilings%2C%20minimalist%2C%20elegant%2C%20soft%20lighting%2C%20high%20quality%2C%208k&image_size=landscape_16_9";
+  const [bgLoaded, setBgLoaded] = useState(false);
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Preload the background image with high priority */}
-      <img src={imageSrc} alt="" loading="eager" fetchPriority="high" className="w-0 h-0 opacity-0 absolute" />
+      <img 
+        src={imageSrc} 
+        alt="" 
+        loading="eager" 
+        fetchPriority="high" 
+        className="w-0 h-0 opacity-0 absolute" 
+        onLoad={() => setBgLoaded(true)}
+      />
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url('${imageSrc}')` }}
       >
-        <div className="absolute inset-0 bg-black/20" /> {/* Overlay for text readability */}
+        {bgLoaded && <div className="absolute inset-0 bg-black/20" />}
       </div>
+
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
