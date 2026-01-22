@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
@@ -137,52 +138,55 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Navigation Overlay */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
-            onAnimationStart={() => setMenuAnimating(true)}
-            onAnimationComplete={() => setTimeout(() => setMenuAnimating(false), 10)}
-            className={cn(
-              'md:hidden fixed inset-0 top-0 z-40 overflow-hidden transform-gpu',
-              menuAnimating ? 'bg-ds-charcoal/85 backdrop-blur-md' : 'bg-ds-charcoal/90 backdrop-blur-xl'
-            )}
-            style={{ willChange: 'opacity', transform: 'translateZ(0)', contain: 'layout paint' }}
-          >
-            <motion.ul
-              className="flex flex-col items-center justify-center h-full space-y-8 pb-20"
-              initial="open"
-              animate="open"
-              exit="closed"
-              variants={containerVariants}
+      {createPortal(
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              onAnimationStart={() => setMenuAnimating(true)}
+              onAnimationComplete={() => setTimeout(() => setMenuAnimating(false), 10)}
+              className={cn(
+                'md:hidden fixed inset-0 top-0 z-40 overflow-hidden',
+                menuAnimating ? 'bg-ds-charcoal/85 backdrop-blur-md' : 'bg-ds-charcoal/90 backdrop-blur-xl'
+              )}
+              style={{ willChange: 'opacity' }}
             >
-              {navLinks.map((link) => (
-                <motion.li key={link.path} variants={itemVariants} style={{ willChange: 'transform, opacity' }}>
-                  <Link
-                    to={link.path}
-                    className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
-                    onMouseEnter={() => preloadPage(link.path)}
-                    onFocus={() => preloadPage(link.path)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsOpen(false);
-                      setTimeout(() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        navigate(link.path);
-                      }, 300);
-                    }}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <motion.ul
+                className="flex flex-col items-center justify-center h-full space-y-8 pb-20"
+                initial="open"
+                animate="open"
+                exit="closed"
+                variants={containerVariants}
+              >
+                {navLinks.map((link) => (
+                  <motion.li key={link.path} variants={itemVariants} style={{ willChange: 'transform, opacity' }}>
+                    <Link
+                      to={link.path}
+                      className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
+                      onMouseEnter={() => preloadPage(link.path)}
+                      onFocus={() => preloadPage(link.path)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(false);
+                        setTimeout(() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                          navigate(link.path);
+                        }, 300);
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </header>
   );
 };
