@@ -42,8 +42,8 @@ const Header: React.FC = () => {
   };
 
   const itemVariants = {
-    open: { opacity: 1, y: 0, filter: 'blur(0px)' },
-    closed: { opacity: 0, y: -8, filter: 'blur(2px)' },
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: -8 },
   };
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between md:gap-12 lg:gap-16">
-        <Link to="/" className="text-2xl md:text-3xl font-serif font-bold text-ds-charcoal tracking-wide">
+        <Link to="/" className={cn('text-2xl md:text-3xl font-serif font-bold tracking-wide transition-colors', isOpen ? 'text-ds-white' : 'text-ds-charcoal')}>
           Design Space
         </Link>
 
@@ -138,14 +138,15 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, filter: 'blur(2px)', height: 0 }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)', height: '100vh' }}
-            exit={{ opacity: 0, y: -8, filter: 'blur(2px)', height: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 10, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: '100vh' }}
+            exit={{ opacity: 0, y: -8, height: 0 }}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
             className={cn(
-              'md:hidden fixed inset-0 top-0 z-40 overflow-hidden',
+              'md:hidden fixed inset-0 top-0 z-40 overflow-hidden transform-gpu',
               'bg-ds-charcoal/90 backdrop-blur-xl'
             )}
+            style={{ willChange: 'transform, opacity' }}
           >
             <motion.ul
               className="flex flex-col items-center justify-center h-full space-y-8 pb-20"
@@ -155,7 +156,7 @@ const Header: React.FC = () => {
               variants={containerVariants}
             >
               {navLinks.map((link) => (
-                <motion.li key={link.path} variants={itemVariants}>
+                <motion.li key={link.path} variants={itemVariants} style={{ willChange: 'transform, opacity' }}>
                   <Link
                     to={link.path}
                     className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
