@@ -39,14 +39,15 @@ const Contact: React.FC = () => {
               We'd love to hear about your vision. Whether you have a specific project in mind or just want to explore possibilities, get in touch.
             </p>
           </div>
-          <div>
+          <div className="relative">
             <LazyImage 
               src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Warm%20inviting%20modern%20living%20room%20corner%20with%20armchair%2C%20reading%20lamp%2C%20plant%2C%20sunlight%2C%20cozy%2C%20high%20quality%2C%208k&image_size=landscape_4_3" 
               alt="Contact Us" 
-              className="w-full rounded-sm shadow-lg"
+              className="w-full rounded-sm shadow-lg aspect-[4/3]"
               eager
               fetchPriority="high"
             />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-ds-white/70 to-transparent rounded-b-sm" />
           </div>
         </div>
       </div>

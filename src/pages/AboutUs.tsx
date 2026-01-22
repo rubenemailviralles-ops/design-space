@@ -56,7 +56,7 @@ const AboutUs: React.FC = () => {
           <LazyImage 
             src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Creative%20team%20meeting%20in%20modern%20minimalist%20office%2C%20collaborating%2C%20looking%20at%20blueprints%2C%20natural%20light%2C%20warm%20atmosphere%2C%208k&image_size=landscape_16_9" 
             alt="Design Space Team" 
-            className="w-full max-w-5xl mx-auto rounded-sm shadow-lg"
+            className="w-full max-w-5xl mx-auto rounded-sm shadow-lg aspect-[16/9]"
             eager
             fetchPriority="high"
           />

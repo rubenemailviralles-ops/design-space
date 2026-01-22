@@ -49,7 +49,7 @@ const BrandDevelopment: React.FC = () => {
             <LazyImage 
               src={heroImage} 
               alt="Brand Mood Board" 
-              className="relative z-10 w-full rounded-sm shadow-lg"
+              className="relative z-10 w-full rounded-sm shadow-lg aspect-[16/9]"
               eager
               fetchPriority="high"
             />
@@ -83,7 +83,7 @@ const BrandDevelopment: React.FC = () => {
             <LazyImage 
               src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Minimalist%20office%20desk%20flatlay%20with%20brand%20stationery%2C%20laptop%2C%20coffee%2C%20beige%20tones%2C%20professional%2C%208k&image_size=square_hd" 
               alt="Brand Strategy" 
-              className="w-full h-auto shadow-md"
+              className="w-full shadow-md aspect-square md:aspect-[4/3]"
             />
           </div>
           <div>
