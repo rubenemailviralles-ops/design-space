@@ -106,8 +106,8 @@ const Header: React.FC = () => {
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
             className={cn(
-              'md:hidden fixed inset-0 top-[70px] z-40 overflow-hidden',
-              isHeroRoute && !scrolled ? 'bg-transparent' : 'bg-ds-white/90 backdrop-blur-md'
+              'md:hidden fixed inset-0 top-0 z-40 overflow-hidden',
+              'bg-ds-white/90 backdrop-blur-md'
             )}
           >
             <div className="flex flex-col items-center justify-center h-full space-y-8 pb-20">
