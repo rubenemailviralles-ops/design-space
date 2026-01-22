@@ -110,7 +110,7 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className={cn(
               'md:hidden fixed inset-0 top-0 z-40 overflow-hidden',
-              'bg-ds-white/95 backdrop-blur-xl'
+              'bg-ds-charcoal/90 backdrop-blur-xl'
             )}
           >
             <div className="flex flex-col items-center justify-center h-full space-y-8 pb-20">
@@ -118,10 +118,7 @@ const Header: React.FC = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={cn(
-                    'text-xl font-serif font-medium transition-colors hover:text-ds-taupe',
-                    location.pathname === link.path ? 'text-ds-charcoal' : 'text-ds-grey'
-                  )}
+                  className="text-xl font-serif font-medium text-ds-white transition-colors hover:text-ds-taupe"
                   onMouseEnter={() => preloadPage(link.path)}
                   onFocus={() => preloadPage(link.path)}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
