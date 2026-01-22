@@ -129,7 +129,9 @@ const Header: React.FC = () => {
         >
           <MotionBurger 
             open={isOpen} 
-            barClass={cn(isHeroRoute && !scrolled ? 'bg-ds-white' : 'bg-ds-charcoal')}
+            barClass={cn(
+              isOpen ? 'bg-ds-white' : (isHeroRoute && !scrolled ? 'bg-ds-white' : 'bg-ds-charcoal')
+            )}
           />
         </button>
       </div>
