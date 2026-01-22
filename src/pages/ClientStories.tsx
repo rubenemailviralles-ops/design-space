@@ -3,6 +3,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Section from '@/components/common/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
+import LazyImage from '@/components/common/LazyImage';
 
 const ClientStories: React.FC = () => {
   const [filter, setFilter] = useState('All');
@@ -104,10 +105,10 @@ const ClientStories: React.FC = () => {
               >
                 <div className="relative overflow-hidden mb-4 aspect-[4/3]">
                   <div className="absolute inset-0 bg-ds-charcoal/0 group-hover:bg-ds-charcoal/10 transition-colors duration-300 z-10" />
-                  <img 
+                  <LazyImage 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full"
                   />
                 </div>
                 <div className="mt-4">

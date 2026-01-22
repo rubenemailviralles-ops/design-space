@@ -4,6 +4,7 @@ import Section from '@/components/common/Section';
 import Button from '@/components/common/Button';
 import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LazyImage from '@/components/common/LazyImage';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -39,11 +40,11 @@ const Contact: React.FC = () => {
             </p>
           </div>
           <div>
-             <img 
-               src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Warm%20inviting%20modern%20living%20room%20corner%20with%20armchair%2C%20reading%20lamp%2C%20plant%2C%20sunlight%2C%20cozy%2C%20high%20quality%2C%208k&image_size=landscape_4_3" 
-               alt="Contact Us" 
-               className="w-full rounded-sm shadow-lg"
-             />
+            <LazyImage 
+              src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Warm%20inviting%20modern%20living%20room%20corner%20with%20armchair%2C%20reading%20lamp%2C%20plant%2C%20sunlight%2C%20cozy%2C%20high%20quality%2C%208k&image_size=landscape_4_3" 
+              alt="Contact Us" 
+              className="w-full rounded-sm shadow-lg"
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { preloadPage } from '@/utils/imagePrefetch';
 
 const TikTokIcon: React.FC<{ size?: number }> = ({ size = 20 }) => (
   <svg
@@ -35,7 +36,13 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="md:col-span-1">
-            <Link to="/" className="text-2xl font-serif font-bold tracking-wide mb-6 block">
+            <Link 
+              to="/" 
+              className="text-2xl font-serif font-bold tracking-wide mb-6 block"
+              onMouseEnter={() => preloadPage('/')}
+              onFocus={() => preloadPage('/')}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               Design Space
             </Link>
             <p className="text-ds-white/70 text-sm leading-relaxed mb-6">
@@ -64,10 +71,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-serif mb-6 text-ds-beige">Explore</h4>
             <ul className="space-y-4">
-              <li><Link to="/" className="text-ds-white/70 hover:text-ds-white transition-colors">Home</Link></li>
-              <li><Link to="/brand-development" className="text-ds-white/70 hover:text-ds-white transition-colors">Brand Development</Link></li>
-              <li><Link to="/client-stories" className="text-ds-white/70 hover:text-ds-white transition-colors">Client Stories</Link></li>
-              <li><Link to="/about" className="text-ds-white/70 hover:text-ds-white transition-colors">About Us</Link></li>
+              <li><Link to="/" className="text-ds-white/70 hover:text-ds-white transition-colors" onMouseEnter={() => preloadPage('/')} onFocus={() => preloadPage('/')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Home</Link></li>
+              <li><Link to="/brand-development" className="text-ds-white/70 hover:text-ds-white transition-colors" onMouseEnter={() => preloadPage('/brand-development')} onFocus={() => preloadPage('/brand-development')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Brand Development</Link></li>
+              <li><Link to="/client-stories" className="text-ds-white/70 hover:text-ds-white transition-colors" onMouseEnter={() => preloadPage('/client-stories')} onFocus={() => preloadPage('/client-stories')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Client Stories</Link></li>
+              <li><Link to="/about" className="text-ds-white/70 hover:text-ds-white transition-colors" onMouseEnter={() => preloadPage('/about')} onFocus={() => preloadPage('/about')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>About Us</Link></li>
             </ul>
           </div>
 

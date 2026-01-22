@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Section from '@/components/common/Section';
 import Button from '@/components/common/Button';
 import { Link } from 'react-router-dom';
+import LazyImage from '@/components/common/LazyImage';
 
 const FeaturedProjects: React.FC = () => {
   const projects = [
@@ -55,10 +56,10 @@ const FeaturedProjects: React.FC = () => {
           >
             <div className="relative overflow-hidden mb-4 h-80 md:h-96">
               <div className="absolute inset-0 bg-ds-charcoal/20 group-hover:bg-ds-charcoal/0 transition-all duration-500 z-10" />
-              <img 
+              <LazyImage 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full"
               />
             </div>
             <h3 className="text-xl font-serif font-bold text-ds-charcoal group-hover:text-ds-taupe transition-colors">

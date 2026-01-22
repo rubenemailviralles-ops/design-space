@@ -2,6 +2,7 @@ import React from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import Section from '@/components/common/Section';
 import { Heart, Shield, Award, Clock } from 'lucide-react';
+import LazyImage from '@/components/common/LazyImage';
 
 const AboutUs: React.FC = () => {
   const team = [
@@ -52,7 +53,7 @@ const AboutUs: React.FC = () => {
           <p className="text-lg text-ds-grey max-w-2xl mx-auto mb-12">
             A team of passionate designers and strategists dedicated to elevating the way you live and work.
           </p>
-          <img 
+          <LazyImage 
             src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Creative%20team%20meeting%20in%20modern%20minimalist%20office%2C%20collaborating%2C%20looking%20at%20blueprints%2C%20natural%20light%2C%20warm%20atmosphere%2C%208k&image_size=landscape_16_9" 
             alt="Design Space Team" 
             className="w-full max-w-5xl mx-auto rounded-sm shadow-lg"
@@ -101,7 +102,7 @@ const AboutUs: React.FC = () => {
             <div key={index} className="text-center">
               <div className="relative mb-6 inline-block">
                 <div className="absolute inset-0 bg-ds-beige/20 rounded-full transform translate-x-2 translate-y-2"></div>
-                <img 
+                <LazyImage 
                   src={member.image} 
                   alt={member.name} 
                   className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full relative z-10 border-4 border-ds-white shadow-md"

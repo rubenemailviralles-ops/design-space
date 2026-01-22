@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
+import { preloadPage } from '@/utils/imagePrefetch';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,9 @@ const Header: React.FC = () => {
                 'text-sm font-medium tracking-widest uppercase transition-colors hover:text-ds-taupe px-1',
                 location.pathname === link.path ? 'text-ds-charcoal border-b-2 border-ds-taupe' : 'text-ds-grey'
               )}
+              onMouseEnter={() => preloadPage(link.path)}
+              onFocus={() => preloadPage(link.path)}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               {link.name}
             </Link>
@@ -85,6 +89,9 @@ const Header: React.FC = () => {
                     'text-xl font-serif font-medium transition-colors hover:text-ds-taupe',
                     location.pathname === link.path ? 'text-ds-charcoal' : 'text-ds-grey'
                   )}
+                  onMouseEnter={() => preloadPage(link.path)}
+                  onFocus={() => preloadPage(link.path)}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 >
                   {link.name}
                 </Link>

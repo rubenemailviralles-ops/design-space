@@ -3,6 +3,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Section from '@/components/common/Section';
 import Button from '@/components/common/Button';
 import { CheckCircle } from 'lucide-react';
+import LazyImage from '@/components/common/LazyImage';
 
 const BrandDevelopment: React.FC = () => {
   const heroImage = "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Minimalist%20brand%20mood%20board%20with%20neutral%20colors%2C%20typography%20samples%2C%20textures%2C%20high%20quality%2C%20artistic%20layout%2C%208k&image_size=landscape_16_9";
@@ -45,7 +46,7 @@ const BrandDevelopment: React.FC = () => {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-ds-white/50 z-0 rounded-lg transform rotate-2"></div>
-            <img 
+            <LazyImage 
               src={heroImage} 
               alt="Brand Mood Board" 
               className="relative z-10 w-full rounded-sm shadow-lg"
@@ -77,7 +78,7 @@ const BrandDevelopment: React.FC = () => {
       <Section background="grey">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <img 
+            <LazyImage 
               src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Minimalist%20office%20desk%20flatlay%20with%20brand%20stationery%2C%20laptop%2C%20coffee%2C%20beige%20tones%2C%20professional%2C%208k&image_size=square_hd" 
               alt="Brand Strategy" 
               className="w-full h-auto shadow-md"
