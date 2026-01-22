@@ -60,24 +60,17 @@ const Header: React.FC = () => {
   }, [location]);
 
   useEffect(() => {
+    const root = document.documentElement;
     if (isOpen) {
-      const y = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${y}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
+      root.style.overflow = 'hidden';
+      root.style.overscrollBehaviorY = 'none';
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
     } else {
-      const top = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      if (top) {
-        const y = Math.abs(parseInt(top, 10)) || 0;
-        window.scrollTo(0, y);
-      }
+      root.style.overflow = '';
+      root.style.overscrollBehaviorY = '';
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
     }
   }, [isOpen]);
 
