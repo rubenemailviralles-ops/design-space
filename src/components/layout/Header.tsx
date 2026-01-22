@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
@@ -59,18 +59,24 @@ const Header: React.FC = () => {
     setIsOpen(false);
   }, [location]);
 
+  const scrollYRef = useRef(0);
   useEffect(() => {
-    const root = document.documentElement;
     if (isOpen) {
-      root.style.overflow = 'hidden';
-      root.style.overscrollBehaviorY = 'none';
-      document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
+      scrollYRef.current = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
     } else {
-      root.style.overflow = '';
-      root.style.overscrollBehaviorY = '';
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
+      const top = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      const y = top ? Math.abs(parseInt(top, 10)) || 0 : scrollYRef.current;
+      window.scrollTo(0, y);
     }
   }, [isOpen]);
 
