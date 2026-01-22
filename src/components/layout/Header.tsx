@@ -59,6 +59,28 @@ const Header: React.FC = () => {
     setIsOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const y = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    } else {
+      const top = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      if (top) {
+        const y = Math.abs(parseInt(top, 10)) || 0;
+        window.scrollTo(0, y);
+      }
+    }
+  }, [isOpen]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Brand Development', path: '/brand-development' },
