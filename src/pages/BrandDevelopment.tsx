@@ -50,6 +50,8 @@ const BrandDevelopment: React.FC = () => {
               src={heroImage} 
               alt="Brand Mood Board" 
               className="relative z-10 w-full rounded-sm shadow-lg"
+              eager
+              fetchPriority="high"
             />
           </div>
         </div>

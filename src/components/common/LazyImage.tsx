@@ -5,15 +5,21 @@ type Props = {
   src: string;
   alt: string;
   className?: string;
+  eager?: boolean;
+  fetchPriority?: 'high' | 'low' | 'auto';
 };
 
-const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
-  const [visible, setVisible] = useState(false);
+const LazyImage: React.FC<Props> = ({ src, alt, className, eager = false, fetchPriority = 'auto' }) => {
+  const [visible, setVisible] = useState(eager);
   const [loaded, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if ('IntersectionObserver' in window) {
+    if (eager) {
+      setVisible(true);
+      return;
+    }
+    if ('IntersectionObserver' in window && !eager) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -41,7 +47,8 @@ const LazyImage: React.FC<Props> = ({ src, alt, className }) => {
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          loading={eager ? 'eager' : 'lazy'}
+          fetchpriority={fetchPriority}
           onLoad={() => setLoaded(true)}
           className={cn(
             'w-full h-full object-cover transition-opacity duration-500',

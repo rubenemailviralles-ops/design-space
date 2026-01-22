@@ -44,6 +44,8 @@ const Contact: React.FC = () => {
               src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Warm%20inviting%20modern%20living%20room%20corner%20with%20armchair%2C%20reading%20lamp%2C%20plant%2C%20sunlight%2C%20cozy%2C%20high%20quality%2C%208k&image_size=landscape_4_3" 
               alt="Contact Us" 
               className="w-full rounded-sm shadow-lg"
+              eager
+              fetchPriority="high"
             />
           </div>
         </div>
