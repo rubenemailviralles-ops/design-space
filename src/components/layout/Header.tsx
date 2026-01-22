@@ -33,6 +33,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isHeroRoute = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +105,10 @@ const Header: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed inset-0 top-[70px] bg-ds-white z-40 overflow-hidden"
+            className={cn(
+              'md:hidden fixed inset-0 top-[70px] z-40 overflow-hidden',
+              isHeroRoute && !scrolled ? 'bg-transparent' : 'bg-ds-white/90 backdrop-blur-md'
+            )}
           >
             <div className="flex flex-col items-center justify-center h-full space-y-8 pb-20">
               {navLinks.map((link) => (
