@@ -22,8 +22,8 @@ const Hero: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url('${imageSrc}')` }}
       >
-        {bgLoaded && <div className="absolute inset-0 bg-black/20" />}
       </div>
+
 
 
       {/* Content */}
