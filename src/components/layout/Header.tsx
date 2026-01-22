@@ -105,9 +105,10 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: 10, filter: 'blur(2px)', height: 0 }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)', height: '100vh' }}
+            exit={{ opacity: 0, y: -8, filter: 'blur(2px)', height: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
             className={cn(
               'md:hidden fixed inset-0 top-0 z-40 overflow-hidden',
               'bg-ds-charcoal/90 backdrop-blur-xl'
